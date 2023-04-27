@@ -28,26 +28,39 @@ RegisterNumber:  212222230059
 */
 ```
 ```
-module combinational(a,b,c,d,f1);
-input a,b,c,d;
-output f1;
-assign f1 = (~b&~d) | (~a&b&d) | (a&b&~c);
+module tt1(A,B,C,D,W,X,Y,Z,F1,F2);
+input A,B,C,D,W,Y,X,Z;
+output F1,F2;
+wire A1,A2,A3,A4,A5,B1,B2,B3,B4,B5;
+assign A1 = ((~A)&(~B)&(~C)&(~D));
+assign A2=(A&(~C)&(~D));
+assign A3=((~B)&C&(~D));
+assign A4=((~A)&B&C&D);
+assign A5=(B&(~C)&D);
+assign B1=(X&(~Y)&Z);
+assign B2=((~X)&(~Y)&Z);
+assign B3=((~W)&X&Y);
+assign B4=(W&(~X)&Y);
+assign B5=(W&X&Y);
+assign F1=(A1|A2|A3|A4|A5);
+assign F2=(B1|B2|B3|B4|B5);
 endmodule
-module combinational(w,x,y,z,f2);
-input w,x,y,z;
-output f2;
-assign f2 = (x&y)|(w&y)|(~y&z);
-endmodule
+
 ```
 ## Output:
 ## RTL
-![](./rtl1.png)
-![](./rtl2.png)
+### F1
+
+![](r.png)
+
+### F2
+
+![](rt.png)
 
 ## Timing Diagram
 
-![](wave1.png)
-![](./wave2.png)
+![](w.png)
+
 
 
 ## Result:
